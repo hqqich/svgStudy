@@ -1,0 +1,191 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <meta name="theme-color" content="#fafafa">
+
+  <style>
+
+    /* 背景 */
+    body {
+      font-family: system-ui;
+      background: #00000000;
+      /*color: BLUE;*/
+      text-align: center;
+    }
+
+    /*@keyframes move {*/
+    /*  0% {*/
+    /*    transform: translateX(0);*/
+    /*  }*/
+    /*  50% {*/
+    /*    transform: translateX(150px);*/
+    /*  }*/
+    /*  75% {*/
+    /*    transform: translateX(100px);*/
+    /*  }*/
+    /*  100% {*/
+    /*    transform: translateX(0);*/
+    /*  }*/
+    /*}*/
+
+    .animated-circle {
+      /*animation: move 2s ease-in-out infinite;*/
+      transition: transform 1s ease-in-out;
+    }
+  </style>
+
+</head>
+
+<body>
+
+<br>
+<Br>
+
+<svg id="my_svg" onclick="myBtn()" width="500" height="100">
+
+  <rect width="250" height="100" fill="lightcoral" style="fill: skyblue; top: 0; left: 0; z-index: 1;" rx='50' ry='50'>
+  </rect>
+
+  <circle id="my_circle" style="position: absolute; z-index: 999;" cx="50" cy="50" r="40" stroke="#ff0000ff" stroke-width="4" fill="#ff0000ff" class="animated-circle">
+    <text id="chenhaoType">0</text>
+  </circle>
+
+
+  <!--  <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="00ffff00"/>-->
+</svg>
+
+
+
+<br>
+<Br>
+<p>当前颜色：<span id = "my_span">test.</span></p>
+
+
+
+
+
+<script>
+  document.getElementsByTagName("h1")[0].style.fontSize = "1vw";
+
+
+  // 绑定点击事件
+
+  // document.getElementById('my_svg').addEventListener('click', () => {
+  // document.getElementById('my_circle').style.transform = 'translateX(200px)';
+  // });
+
+
+  function color16(){//十六进制颜色随机
+    const r = Math.floor(Math.random()*256);
+    const g = Math.floor(Math.random()*256);
+    const b = Math.floor(Math.random()*256);
+    return `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`;
+  }
+
+
+  function myBtn() {
+
+    console.log("点击了button")
+
+
+    // 获取svg
+    let elementById = document.getElementById("my_svg");
+    // 获取里面的圆
+    let nodeListOf = elementById.getElementsByTagName('circle');
+    let color16Value = color16();
+
+    nodeListOf[0].setAttribute("fill", color16Value);
+    nodeListOf[0].setAttribute("stroke", color16Value);
+
+    // console.log(nodeListOf[0].cx.baseVal.value);
+    // console.log(nodeListOf[0].cy.baseVal.value);
+
+
+    // 获取chenhaoType
+    let chenhaoTypeElment = document.getElementById("chenhaoType");
+    let chenhaoTypeValue = chenhaoTypeElment.innerHTML;
+
+    if (chenhaoTypeValue == 0) {
+      // 移动
+      nodeListOf[0].style.transform = 'translateX(150px)';
+      // animation: move 2s ease-in-out infinite;
+      nodeListOf[0].style.animation = 'move 2s ease-in-out infinite';
+      chenhaoTypeElment.innerHTML = 1;
+    } else {
+      // 移动
+      nodeListOf[0].style.transform = 'translateX(0px)';
+      // animation: move 2s ease-in-out infinite;
+      nodeListOf[0].style.animation = 'move 2s ease-in-out infinite';
+      chenhaoTypeElment.innerHTML = 0;
+    }
+
+
+
+
+
+
+    // ============= 下方的文字 =============
+    let elementById1 = document.getElementById("my_span");
+
+    elementById1.textContent = color16Value;
+    elementById1.style.color = color16Value;
+
+
+
+    // nodeListOf[0].style.visibility = 'hidden'
+    // nodeListOf[1].removeAttribute("hidden")
+
+    // alert(nodeListOf.length)
+
+
+
+  }
+</script>
+
+
+
+
+
+
+<script src="js/vendor/modernizr-3.11.2.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+
+<script>
+  window.ga = function () {
+    ga.q.push(arguments)
+  };
+  ga.q = [];
+  ga.l = +new Date;
+  ga('create', 'UA-XXXXX-Y', 'auto');
+  ga('set', 'anonymizeIp', true);
+  ga('set', 'transport', 'beacon');
+  ga('send', 'pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async></script>
+
+
+
+
+
+
+</body>
+</html>
